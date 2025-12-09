@@ -1,0 +1,41 @@
+body{
+background-color: #0A192f;
+color:aliceblue;
+margin: 0 13%;
+}
+
+.description{
+    text-align: center;
+    margin: 10px;
+}
+.description > h2{
+    margin: 0px;
+}
+ 
+.description > p{
+    margin: 0px;
+}
+
+.sub-container{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.f-item {
+    width: 220px;
+    height: 220px;
+    padding: 13px;
+    margin: 15px;
+    background-color: #112240;
+}
+.f-item > p{
+    font-size: 12px;
+}
+
+.t-stack-list{
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    padding: 0px;
+}

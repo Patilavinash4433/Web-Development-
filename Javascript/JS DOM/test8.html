@@ -1,0 +1,48 @@
+<!-- Event Delegation -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+body{
+padding: 400px;
+background-color: #CC527A;
+}
+
+div{
+padding: 50px;
+background-color: #E8175D ;
+width : max-content;
+}
+span{
+padding: 50px;
+background-color: #474747;
+display: block;
+}
+</style>
+<body>
+    <div>
+        <span>
+            <button>Click Button</button>
+        </span>
+    </div>
+</body>
+<script>
+const div = document.getElementsByTagName("div")[0];
+div.addEventListener('click', (event) => {
+    if (event.target.tagName === 'BUTTON') {
+        console.log("button was clicked");
+    } else if (event.target.tagName === 'SPAN') {
+        console.log("span was clicked");
+    } else {
+        console.log("div was clicked");
+    }
+});
+</script>
+
+</html>

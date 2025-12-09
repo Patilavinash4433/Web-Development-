@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Product </title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: rgb(42, 112, 117);
+    }
+    
+    .Container {
+        margin: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .Search {
+        /* display: flex; */
+        margin: 10px;
+    }
+    
+    #Search-input {
+        width: 300px;
+        padding: 6px;
+        margin-right: 10px;
+    }
+    
+    #Search-btn {
+        padding: 7px 13px;
+        border: none;
+        background-color: rgb(16, 140, 212);
+        color: #fff;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    
+    .category-container {
+        display: flex;
+    }
+    
+    .category-btn {
+        padding: 5px 10px;
+        margin: 10px;
+        background-color: rgb(65, 168, 148);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    
+    .product-item {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 17px;
+        border-radius: 20px;
+        background-color: rgb(51, 70, 153);
+    }
+    
+    #Product-list {
+        display: flex;
+        padding: 25px 1px;
+        text-align: center;
+        flex-wrap: wrap;
+    }
+    
+    .product-item img {
+        height: 200px;
+        width: 210px;
+    }
+
+    #no-products {
+        display: none;
+        color: white;
+        text-align: center;
+        font-size: 50px;
+        margin: 20px;
+    }
+</style>
+
+<body>
+    <!-- This Basicaly Search The Product and Findet -->
+
+    <div class="Container">
+        <div class="Search">
+            <input type="text" value="" id="Search-input" placeholder="Search...">
+            <button id="Search-btn">Search</button>
+        </div>
+        <div class="category-container">
+            <div class="category-btn" data-category="All">All Product</div>
+            <div class="category-btn" data-category="Electronics">Electronics</div>
+            <div class="category-btn" data-category="Clothing">Clothing</div>
+            <div class="category-btn" data-category="Home">Home & Garden</div>
+        </div>
+    </div>
+
+    <div id="Product-list">
+        <div class="product-item" data-category="Electronics">
+            <img src="https://lh3.googleusercontent.com/ddVnuN22OGgDgtWrGubiGg3KQ7n9zXXUAZFyLMILS6ZAEaCsYUf_PQ9UAcB2-zCZmrn-xoEsjah6tRHn2coNv1iQCSjJHvGWR8CR=rw-e365-nu-w1050" alt="" srcset="">
+            <hr>
+            <h3>Smart Phone</h3>
+            <p>Description of Smart Phone Product...</p>
+        </div>
+        <div class="product-item" data-category="Clothing"><img src="/JS Mini Project/Images/1_kVR_d2p0LatKE42QW7OZhA-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>T-Shirt</h3>
+            <p>Description of T-Shirt Product...</p>
+        </div>
+        <div class="product-item" data-category="Home"><img src="/JS Mini Project/Images/135016556_123698f9-0ee0-4cbb-99be-f6a1a85153dd-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>Coffe-Maker</h3>
+            <p>Description of Coffee-Maker Product...</p>
+        </div>
+        <div class="product-item" data-category="Electronics">
+            <img src="/JS Mini Project/Images/pngtree-leptop-transparent-background-png-image_14691755-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>Leptop</h3>
+            <p>Description of Laptop Product...</p>
+        </div>
+        <div class="product-item" data-category="Home"><img src="/JS Mini Project/Images/HD-wallpaper-master-vijay-jd-thalapathy-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>Formal-Shirt</h3>
+            <p>Description of Formal Shirt Product...</p>
+        </div>
+        <div class="product-item" data-category="Home"><img src="/JS Mini Project/Images/image-1-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>Gas-Silender</h3>
+            <p>Description of Gas Cylinder Product...</p>
+        </div>
+        <div class="product-item" data-category="Home"><img src="/JS Mini Project/Images/download-removebg-preview.png" alt="" srcset="">
+            <hr>
+            <h3>PC</h3>
+            <p>Description of PC Product...</p>
+        </div>
+    </div>
+
+    <div id="no-products">Product not found</div>
+
+</body>
+
+<script>
+    const Productlist = document.getElementById("Product-list");
+    const SearchInput = document.getElementById("Search-input");
+    const Searchbtn = document.getElementById("Search-btn");
+    const Categorybtns = document.querySelectorAll(".category-btn");
+    const noProductsMessage = document.getElementById("no-products");
+
+    let selectedCategory = "All";
+
+    function filterProduct() {
+        const Searchvalue = SearchInput.value.toLowerCase();
+        const productItems = document.querySelectorAll(".product-item");
+        let hasVisibleProducts = false;
+
+        productItems.forEach(item => {
+            const title = item.querySelector("h3").innerText.toLowerCase();
+            const category = item.dataset.category;
+
+            if ((title.includes(Searchvalue) || Searchvalue == "") && (selectedCategory === "All" || category === selectedCategory)) {
+                item.style.display = "block";
+                hasVisibleProducts = true;
+            } else {
+                item.style.display = "none";
+            }
+        });
+
+        if (hasVisibleProducts) {
+            noProductsMessage.style.display = "none";
+        } else {
+            noProductsMessage.style.display = "block";
+        }
+    }
+
+    function setcategory(event) {
+        selectedCategory = event.target.dataset.category;
+        filterProduct();
+    }
+
+    Searchbtn.addEventListener('click', filterProduct);
+    SearchInput.addEventListener('keyup', filterProduct);
+    Categorybtns.forEach(btn => {
+        btn.addEventListener('click', setcategory);
+    });
+    filterProduct();
+</script>
+
+</html>

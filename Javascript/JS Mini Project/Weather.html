@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="shortcut icon" href="/JS Mini Project/Images/cloud-removebg-preview.png" type="image/x-icon">
+</head>
+
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(28, 121, 128);
+    color: rgb(25, 23, 146);
+
+}
+.container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+.input{
+    display: flex;
+    justify-content: center;
+    margin: 60px;
+}
+.input input{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px;
+}
+.input button{
+    padding: 10px;
+    background-color: rgb(73, 99, 243);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+#btn{
+    margin-left: 20px;
+}
+h1{
+    margin: 20px;
+    text-align: center;
+    /* display: flex; */
+}
+img{
+    height: 90px;
+    width: 90px;
+}
+.weather-box{
+    height: 500px;
+    border: 2px solid black;
+    margin-top: 50px;
+    padding: 20px;
+}
+.icon{
+    font-size : 50px;
+    margin-bottom: 30px;
+}
+.weather{
+    font-size: 40px;
+}
+.temperature{
+    font-size: 40px;
+
+}
+.description{
+    font-size: 40px;
+
+}
+</style>
+
+<body>
+    <div class="container">
+        <img src="/JS Mini Project/Images/cloud-removebg-preview.png" alt="" srcset="">
+        <h1>Weather App</h1>
+        <div class="input">
+            <input type="text" name="" placeholder="Enter City name">
+            <button id="btn">Search</button>
+        </div>
+        <div class="weather-box">
+            <div class="icon"></div>
+            <div class="weather"></div>
+            <div class="temperature"></div>
+            <div class="description"></div>
+        </div>
+        
+    </div>
+</body>
+
+<script>
+
+const input = document.querySelector('input');
+const btn= document.getElementById('btn');
+const icon= document.querySelector('.icon');
+const weather= document.querySelector('.weather');
+const temperature= document.querySelector('.temperature');
+const description= document.querySelector('.description');
+
+btn.addEventListener("click",()=>{
+    let city = input.value;
+   getWeather(city);
+})
+
+function getWeather(city){
+    console.log(city)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${'6ac55a795daee288891480aece1c0af5'}&units=metric`)
+    .then(response=>response.json())
+    .then(data => {
+     console.log(data);
+     const iconCode = data.weather[0].icon;
+     icon.innerHTML=`<img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="Weather Icon"/>`
+
+    const weatherCity = data.name;
+    const weatherCountry = data.sys.country;
+    weather.innerHTML = `${weatherCity}, ${weatherCountry}`;
+
+    const temp = data.main.temp;
+    temperature.innerHTML = `Temperature: ${temp}°C`;
+
+    const weatherDescription = data.weather[0].description;
+    description.innerHTML = `Description: ${weatherDescription}`;
+    })
+    .catch(error => {
+        console.error('Error fetching weather data:', error);
+    });
+}
+
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+
+<!-- /Using Tailwind CSS/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<!-- Using Tailwind CSS -->
+<body class="bg-gray-100 p-3 m-5 ">
+ 
+    <ul class="w-1/2 bg-white shadow-md rounded-3xl overflow-hidden">
+        <li class="p-5 first:bg-red-200 ">Item 1</li>
+        <li class="p-5 hover:bg-blue-200 ">Item 2</li>
+        <li class="p-5 odd:bg-green-200">Item 2</li>
+        <li class="p-5 even:bg-gray-300">Item 3</li>
+        <li class="p-5 bg-pink-300 hover:bg-pink-600  active:bg-blue-200 ">Item 4</li>
+        <li class="p-5 last:bg-blue-500 text-white font-bold  px-10 py-8 active:bg-red-200">Item 5</li>
+    </ul>
+    <hr><br>
+ <li class="p-5 bg-pink-300 hover:bg-pink-600  active:bg-blue-200 ">Item 4</li>
+<li class="p-5 bg-blue-500 text-white font-bold  px-10 py-8 active:bg-red-600 rounded-full focus:outline-none ">Item 5</li><br>
+
+
+
+<div class="group bg-white p-8 rounded-lg shadow-lg"> <h2 class="text-lg font-bold text-gray-800 group-hover:text-blue-800 ">Parent Element</h2> <p class="text-gray-600 group-hover:text-blue-500">This text changes color when the parent is hovered.</p> <button class="mt-4 bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded group-hover:bg-blue-500 group-hover:text-white"> Hover Over Parent </button> </div>
+</body>
+</html>

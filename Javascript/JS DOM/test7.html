@@ -1,0 +1,22 @@
+<!-- Window Location Show webpage -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="loc"></div>
+</body>
+<script>
+    let loc = document.querySelector('.loc');
+    loc.innerHTML = window.location.href;
+    loc.innerHTML = window.location.hostname;
+    console.log(window.location.href);
+    console.log(window.location.hostname);
+
+</script>
+
+</html>

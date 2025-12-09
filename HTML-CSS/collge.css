@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+header {
+    background: #2f3a41;
+    color: #ffffff;
+    padding: 24.8px;
+    text-align: left;
+}
+
+.img{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 0px;
+    padding-bottom: 12px;
+
+}
+
+h2 {
+    margin: 16px;
+    left: 2%;
+    
+}
+
+nav{
+      display: flex;   
+      position: absolute;
+      top: 0;
+      left: 1200px;
+      padding: 20px;
+      margin: 20px;
+      
+    
+}
+
+
+.full {
+padding-top: 0px;
+}

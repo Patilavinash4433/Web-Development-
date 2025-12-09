@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prectice</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border: 3px solid black;
+            border-radius: 5px;
+        }
+        .click{
+            cursor: pointer;
+            padding: 10px 20px;
+            margin: 20px 40px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" onmouseover="onmouseover(this)" onmouseout="onmouseout(this)"></div>
+        <button class="click">Change color</button>
+    </div>
+</body>
+<script>
+  function changeColor(){
+    let box = document.querySelector('.box');
+    let color = ['red', 'green', 'blue', 'yellow', 'black', 'purple', 'pink', 'orange', 'brown', 'gray'];
+    let randomColor = Math.floor(Math.random() * color.length);
+    box.style.backgroundColor = color[randomColor];
+  }
+
+    let btn = document.querySelector('.click');
+    btn.addEventListener('click', changeColor);
+
+
+    // mouseover and mouseout
+
+    // function onmouseover(e){
+    //     e.style.backgroundColor = 'green';
+    // }
+    // function onmouseout(e){
+    //     e.style.backgroundColor = 'red';
+    // }   
+   // mouse down and mouse up
+
+    //  function onmousedown(box){
+    //     box.style.backgroundColor = 'green';
+    // }
+    // function onmouseup(box){
+    //     e.style.backgroundColor = 'red';
+    // }
+
+
+
+
+    
+
+
+
+</script>
+
+</html>

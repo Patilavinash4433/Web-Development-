@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(19, 56, 73);
+    color: aqua;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.Form{
+    width: 500px;
+    margin: 2vh auto 0 auto;
+    padding:20px;
+    background-color: rgb(1, 8, 14);
+    border-radius: 5px;
+    font-size: 19px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+h1{
+    border-bottom: 1px solid rgb(255, 255, 255);
+    margin-bottom: 20px;
+    text-align: center;
+    
+}
+.form-control{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control input{
+    border: 2px solid white;
+    border-radius: 4px;
+    display: block;
+    font-size: 20px;
+    width: 100%;
+}
+
+#btn{
+    padding: 10px;
+    margin-top: 5%;
+    width: 100%;
+    background-color:rgb(12, 197, 141);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 15px;
+}
+.form-control .Error{
+    color: #ff3860;
+    font-size: 12px;
+    height: 13px;
+    margin: 10px;
+}
+
+.form-control.success input{ 
+   border-color: green;
+}
+.form-control.error input{ 
+   border-color: red;
+}
+</style>
+<body>
+    
+    <div class="container">
+        <form class="Form">
+            <h1>Registration Form</h1>
+            <div class="form-control">
+            <label>UserName:</label>
+            <input type="text" id="UserName" name="UserName">
+            <span class="Error"></span>
+            </div>
+
+            <div class="form-control">
+            <label>Email:</label>
+            <input type="text" id="Email" name="Email">
+            <span class="Error"></span>
+            </div>
+
+            <div class="form-control">
+            <label>Password:</label>
+            <input type="password" id="Password" name="Password">
+            <span class="Error"></span>
+            </div>
+            <div class="form-control">
+            <label>Phone No:</label>
+            <input type="text" id="Phone-No" name="PhoneNo">
+            <span class="Error"></span>
+            </div>
+            <input type="submit" id="btn" value="submit">
+        </form>
+    </div>
+
+</body>
+<script>
+let Form = document.querySelector(".Form");
+let UserName = document.getElementById("UserName");
+let Email = document.getElementById("Email");
+let Password = document.getElementById("Password");
+let PhoneNo = document.getElementById("Phone-No");
+
+const submit = document.getElementById("btn");
+Form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    ValidateInput();
+});
+
+let ValidateInput = () => {
+    const UserNamevalue = UserName.value.trim();
+    const Emailvalue = Email.value.trim();
+    const Passwordvalue = Password.value.trim();
+    const Phonedvalue = PhoneNo.value.trim();
+
+    if (UserNamevalue === '') {
+        setError(UserName, 'UserName is Required');
+    } else {
+        setSuccess(UserName);
+    }
+
+    if (Emailvalue === '') {
+        setError(Email, 'Email is Required');
+    } else if (!isValidEmail(Emailvalue)) {
+        setError(Email, 'Provide a valid email address');
+    } else {
+        setSuccess(Email);
+    }
+
+    if (Passwordvalue === '') {
+        setError(Password, 'Password is Required');
+    } else {
+        setSuccess(Password);
+    }
+
+    if (Phonedvalue === '') {
+        setError(PhoneNo, 'Phone Number is Required');
+    } else {
+        setSuccess(PhoneNo);
+    }
+};
+
+const setError = (element, message) => {
+    const InputControl = element.parentElement;
+    const ErrorDisplay = InputControl.querySelector('.Error');
+    ErrorDisplay.innerText = message;
+    InputControl.classList.add('error');
+    InputControl.classList.remove('success');
+};
+
+const setSuccess = (element) => {
+    const InputControl = element.parentElement;
+    const ErrorDisplay = InputControl.querySelector('.Error');
+    ErrorDisplay.innerText = '';
+    InputControl.classList.add('success');
+    InputControl.classList.remove('error');
+};
+
+const isValidEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+};
+
+
+</script>
+</html>
